@@ -1,0 +1,14 @@
+td{
+}
+table{
+	width:30%; 
+}
+#sign{
+	width:80%;
+}
+#sign td:nth-child(2){
+	text-align: right;
+}
+h1{
+	text-align: center;
+}
