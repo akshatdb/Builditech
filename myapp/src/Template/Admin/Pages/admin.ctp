@@ -65,7 +65,6 @@
 										<section>
 											<h3>Manage Users</h3>
 											<ul class="links">
-												<li><?= $this->Html->link('Mail All',['controller' =>'Users','action'=>'contact'],['class' => 'button alt link-btn']); ?></li>
 												<li><?= $this->Html->link('Add Agent',['controller' =>'users','action'=>'register','agent'],['class' => 'button alt link-btn']); ?></li>
 												<li><?= $this->Html->link('Add Admin',['controller' =>'users','action'=>'register','admin'],['class' => 'button alt link-btn']); ?></li>
 												<li><?= $this->Html->link('Manage Agents',['controller' =>'users','action'=>'index','agent'],['class' => 'button alt link-btn']); ?></li>

@@ -113,11 +113,11 @@ class ProjectsController extends AppController
     public function getGrid(){
         $plotsTable = TableRegistry::get('Plots');
         $id = $this->request->getData('id');
-        $bookedplots = $plotsTable->find('list')->where(['Plots.project_id =' => $id])->toArray();
-        $plots = $this->Projects->get($id)['noplots'];
-        $amount = $this->Projects->get($id)['amount'];
-        $this->set('bookedplots', array_values($bookedplots));
-        $this->set('plots', $plots);
-        $this->set('amount',$amount);
+                $project = $this->Projects->get($id, [
+            'contain' => ['Plots']
+        ]);
+        $this->set('bookedplots', array_values($project['plots']));
+        $this->set('plots', $project->noplots);
+        $this->set('amount',$project->amount);
     }
 }

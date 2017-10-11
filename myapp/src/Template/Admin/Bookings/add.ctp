@@ -20,10 +20,10 @@
             echo $this->Form->control('booking_amt',['required' => 'true','placeholder' => 'Booking Amount']);
             echo '<div class="input payselect"><b>Payment Mode :</b></div>';
             echo $this->Form->radio('paymentmode', [
-                    ['value' => 'Check', 'text' => 'Check'],
+                    ['value' => 'Cheque', 'text' => 'Cheque'],
                     ['value' => 'Cash', 'text' => 'Cash'],
                     ],['label' => 'Payment Mode','required' => true,'hiddenField' => false, 'class' => 'payment']);
-            echo $this->Form->control('checkno',['required' => false,'placeholder' => 'Check No']);
+            echo $this->Form->control('chequeno',['required' => false,'placeholder' => 'Cheque No']);
             echo '<div class="input payselect"><b>ID Type :</b></div>';
             echo $this->Form->radio('idtype', [
                     ['value' => 'Aadhaar', 'text' => 'Aadhaar'],
@@ -35,19 +35,21 @@
     <?= $this->Form->button(__('Submit'),['class' => 'login-btn alt']) ?>
     <?= $this->Form->end() ?>
     <script>
-        $('#checkno').hide();
+        $('#chequeno').hide();
         $('#idno').hide();
         $('.payment').click(function(){
-            if($('#paymentmode-check').prop('checked'))
-                $('#checkno').show();
+            if($('#paymentmode-cheque').prop('checked'))
+                $('#chequeno').show();
             else
-              {  $('#checkno').hide();
+              {  $('#chequeno').hide();
 
         }});
         $('.idtypes').click(function(){
             if($('#idtype-aadhaar').prop('checked'))
-            {    $('#idno').show();
-                $('#idno').attr('placeholder','Aadhaar Number');}
+            {    
+                $('#idno').show();
+                $('#idno').attr('placeholder','Aadhaar Number');
+            }
             else if($('#idtype-pan').prop('checked'))
             {
                 $('#idno').show();
@@ -56,7 +58,8 @@
             else
                 $('#idno').hide();
         });
-    </script><script>
+    </script>
+    <script>
         function createGrid(){
             $.ajax({
                     type: "POST",
@@ -69,7 +72,6 @@
                     success: function(data){
                         $('.plot-grid').html('');
                         var plots = data['bookedplots'];
-                        alert
                         for (var i = 0; i < data['plots']; i++)
                             $('.plot-grid').append($('<div>',{
                                 id: 'plot-'+(i+1),
@@ -79,26 +81,27 @@
                         amount_var = data['amount'];
                         if(plots != undefined)
                         plots.forEach(function(plot){
-                            $('#plot-'+plot).removeClass('free').addClass('booked');
+                            $('#plot-'+plot['id']).removeClass('free').addClass('booked');
                         });
                         $('.plot-ico').on('click',function(){
-                            if($('#plotno').val()!='')
-                            $('#plotno').val($('#plotno').val()+','+$(this).html());
-                            else
-                            $('#plotno').val($(this).html());
-                            $(this).addClass('selected-plot');
-                            $('#booking-amt').val(amount_var * $('.selected-plot').length);
+                            if(!$(this).hasClass('selected-plot'))
+                            {
+                                if($('#plotno').val()!='')
+                                $('#plotno').val($('#plotno').val()+','+$(this).html());
+                                else
+                                $('#plotno').val($(this).html());
+                                $(this).addClass('selected-plot');
+                                $('#booking-amt').val(amount_var * $('.selected-plot').length);
+                            }
                         });
                         $('#clear-plots').show();
                     }
                         ,
                     dataType: 'json'
                 });
-
         }
         $('#clear-plots').hide();
-        $('#project-id').change(createGrid());
-        $('#project-id').click(createGrid());
+        $('#project-id').click(createGrid)
         $('#clear-plots').click(function(){
             $('#plotno').val('');
             $('.plot-grid').html('');
