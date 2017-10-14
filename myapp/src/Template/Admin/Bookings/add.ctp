@@ -16,7 +16,7 @@
             echo $this->Form->control('address',['required' => 'true','placeholder' => 'Address']);
             echo $this->Form->control('email',['required' => 'true','placeholder' => 'Email ID']);
             echo $this->Form->control('moba',['required' => 'true','placeholder' => 'Mobile No. 2']);
-            echo $this->Form->control('mobb',['required' => 'true','placeholder' => 'Mobile No 1:']);
+            echo $this->Form->control('mobb',['required' => 'false','placeholder' => 'Mobile No 1:']);
             echo $this->Form->control('booking_amt',['required' => 'true','placeholder' => 'Booking Amount']);
             echo '<div class="input payselect"><b>Payment Mode :</b></div>';
             echo $this->Form->radio('paymentmode', [
@@ -64,7 +64,7 @@
             $.ajax({
                     type: "POST",
                     header: {'X-CSRF-TOKEN' : this.csrfToken},
-                    url: '/admin/projects/getGrid',
+                    url: '/projects/getGrid',
                     data: {
                         "id" : $('#project-id').val(),
                         "_csrfToken": '<?= $this->request->params['_csrfToken'] ?>'

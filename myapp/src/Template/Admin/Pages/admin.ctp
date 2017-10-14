@@ -9,17 +9,19 @@
 										<section>
 											<h3>Manage Customers</h3>
 											<ul class="links">
-												<li><?= $this->Html->link('Add Booking',['controller' =>'Bookings','action'=>'add'],['class' => 'button alt link-btn']); ?></li>
+												<li><?= $this->Html->link('Add Booking',['prefix'=>false,'controller' =>'Bookings','action'=>'add'],['class' => 'button alt link-btn']); ?></li>
 												<li><?= $this->Html->link('List All Bookings',['controller' =>'Bookings','action'=>'index'],['class' => 'button alt link-btn']); ?></li>		
 											</ul>
 										</section>
 
 										<section>
+                                            <div class="quick-task">
 											<h3>Quick Tasks</h3>
 											<ul class="links">
 												<li><input type="text" id="print-id" placeholder="Booking ID"/></li>
 												<li><a class="button alt link-btn" id="print-btn">Print Reciept</a></li>	
 											</ul>
+                                            </div>
                                             <h3>Send Mail</h3>
                                             <ul class="links">
                                                 <li><input type="text" id="mail-id" placeholder="Email ID"/></li>
@@ -58,7 +60,7 @@
 											<ul class="links">
 												<li><a href="../admin/projects/add" class= "button alt link-btn">Add a new Project</a></li>
 												<li><a href="../admin/projects/index" class= "button alt link-btn">See and Edit Projects</a></li>
-												<li><a href="../admin/images/manage" class= "button alt link-btn">Delete Gallery Images</a></li>
+												<li><a href="../admin/images/manage" class= "button alt link-btn">Delete Projects Images</a></li>
 											</ul>
 										</section>
 
@@ -71,6 +73,13 @@
 												<li><?= $this->Html->link('Manage Admins',['controller' =>'users','action'=>'index','admin'],['class' => 'button alt link-btn']); ?></li>
 											</ul>
 										</section>
+                                        <section>
+                                            <h3>Manage Website</h3>
+                                            <ul class="links">
+                                                <li><?= $this->Html->link('Add Gallery Images',['controller' =>'galleryimages','action'=>'add'],['class' => 'button alt link-btn']); ?></li>
+                                                <li><?= $this->Html->link('Delete Gallery Images',['controller' =>'galleryimages','action'=>'manage'],['class' => 'button alt link-btn']); ?></li>
+                                            </ul>
+                                        </section>
 
 								</div>
 							</div>

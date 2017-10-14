@@ -38,22 +38,6 @@ class UsersController extends AppController
         $this->Flash->success('You are logged out');
         return $this->redirect($this->Auth->logout());
     }
-    public function register(){
-        $this->viewBuilder()->setLayout('authentication');
-        $user = $this->Users->newEntity();
-        if($this->request->is('post')){
-            $user = $this->Users->patchEntity($user,$this->request->data);
-            if($this->Users->save($user)){
-                $this->Flash->success('User was registered');
-                return $this->redirect(['action'=>'login']);
-            }
-            else
-                $this->Flash->error("Something went wrong");
-        }
-        $this->set(compact('user'));
-        $this->set('__serialize',['user']);
-
-    }
     public function getUser(ServerRequest $request)
     {
     $username = env('PHP_AUTH_USER');
@@ -63,9 +47,6 @@ class UsersController extends AppController
         return false;
     }
     return $this->_findUser($username, $pass);
-    }
-    public function beforefilter(Event $event){
-        $this->Auth->allow(['register']);
     }
     
 }

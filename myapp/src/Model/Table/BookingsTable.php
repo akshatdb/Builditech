@@ -74,8 +74,8 @@ class BookingsTable extends Table
         $validator
             ->scalar('paymentmode');
         $validator
-            ->scalar('checkno')
-            ->allowEmpty('checkno');
+            ->scalar('chequeno')
+            ->allowEmpty('chequeno');
         $validator
             ->scalar('idtype');
         $validator

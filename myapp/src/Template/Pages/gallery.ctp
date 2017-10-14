@@ -45,7 +45,15 @@
                                                 <p>Sidebar on the left, content on the right.</p>
                                             </header>
 
-                                            <span class="image featured"><img src="images/banner.jpg" alt="" /></span>
+                                            <span class="image featured">
+                                            <?php if (!sizeof($images) == 0): ?>
+                                            <?php foreach ($images as $image): ?>
+                                                <img src="<?= $image->photo_dir?>" id="<?= $image->id ?>">
+                                            <?php endforeach; ?>
+                                            <?php else: ?>
+                                            ERROR:NO IMAGES FOUND
+                                            <?php endif ?>                                                
+                                            </span>
 
                                             <p>Phasellus quam turpis, feugiat sit amet ornare in, hendrerit in lectus.
                                             Praesent semper mod quis eget mi. Etiam eu ante risus. Aliquam erat volutpat.

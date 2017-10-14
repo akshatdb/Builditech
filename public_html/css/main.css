@@ -3543,3 +3543,8 @@
 	color:#37c0fb;
 	cursor:default;
 }
+@media (max-width:768px){
+	.quick-task{
+	display:none;
+}
+}

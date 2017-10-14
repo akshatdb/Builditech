@@ -42,15 +42,11 @@ class BookingsController extends AppController
                             $p->project_id = $saved->project_id;
                             $p->booking_id = $saved->id;
                             $plotsTable->save($p);
-                }
-                $this->Flash->success(__('The booking has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+                }        
+                $this->set(compact('message','Success');
             }
-            $this->Flash->error(__('The booking could not be saved. Please, try again.'));
+            $this->set('message','Failed');
         }
-        $this->set(compact('booking'));
-        $this->set('_serialize', ['booking']);
     }
 
     /**
@@ -82,11 +78,9 @@ class BookingsController extends AppController
                             $p->booking_id = $saved->id;
                             $plotsTable->save($p);
                 }
-                $this->Flash->success(__('The booking has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+                $this->set(compact('message','Success');
             }
-            $this->Flash->error(__('The booking could not be saved. Please, try again.'));
+            $this->set(compact('message','Failed');
         }
         $this->set(compact('booking', 'projects'));
         $this->set('_serialize', ['booking']);
@@ -102,11 +96,9 @@ class BookingsController extends AppController
             $booking = $this->Bookings->patchEntity($booking, $this->request->getData());
             $booking->confirmed = 1;
             if ($this->Bookings->save($booking)) {
-                $this->Flash->success(__('The booking has been confirmed.'));
-
-                return $this->redirect($this->referer());
+                $this->set(compact('message','Success');
             }
-            $this->Flash->error(__('The booking could not be saved. Please, try again.'));
+            $this->set(compact('message','Failed');
         }
 
     }
@@ -145,8 +137,6 @@ class BookingsController extends AppController
         } else {
             $this->set("message","Delete unsuccesful");;
         }
-
-        return $this->redirect(['action' => 'index']);
     }
     public function print($id = null)
     {

@@ -1,7 +1,7 @@
 <?php
-namespace App\Controller\Api\Admin;
+namespace App\Controller\Admin;
 
-use App\Controller\Api\AppController;
+use App\Controller\AppController;
 
 /**
  * Images Controller
@@ -10,18 +10,17 @@ use App\Controller\Api\AppController;
  *
  * @method \App\Model\Entity\Image[] paginate($object = null, array $settings = [])
  */
-class ImagesController extends AppController
+class GalleryimagesController extends AppController
 {
     public function manage()
     {   
-        $this->paginate = ['contain' => ['Projects']];
-        $this->viewBuilder()->setLayout('default');
-        $images = $this->paginate($this->Images);
+        $images = $this->paginate($this->Galleryimages);
         $this->set(compact('images'));
         $this->set('_serialize', ['images']);
     }
     public function add($project_id = null)
     {
+        $this->viewBuilder()->setLayout('customer');
         if (!empty($this->request->data['photo']['name'])) {
                 $file = $this->request->data['photo']; //put the data into a var for easy use
 
@@ -33,27 +32,28 @@ class ImagesController extends AppController
                 if (in_array($ext, $arr_ext)) {
                 //do the actual uploading of the file. First arg is the tmp name, second arg is 
                 //where we are putting it
-                move_uploaded_file($file['tmp_name'], WWW_ROOT . 'upload/projects/' . $setNewFileName . '.jpg');
+                move_uploaded_file($file['tmp_name'], $this->base. 'upload/gallery/' . $setNewFileName . '.jpg');
 
                 //prepare the filename for database entry 
                 $imageFileName = $setNewFileName . '.jpg';
             }
         }
-        $this->set('project_id', $project_id);
-        $image = $this->Images->newEntity();
+        $image = $this->Galleryimages->newEntity();
         if ($this->request->is('post')) {
-        $image = $this->Images->patchEntity($image, $this->request->getData());
+        $image = $this->Galleryimages->patchEntity($image, $this->request->getData());
         if (!empty($this->request->data['photo']['name'])) {
             $image->photo = $imageFileName;
-            $image->photo_dir = '/upload/projects/'.$imageFileName;
+            $image->photo_dir = 'upload/gallery/'.$imageFileName;
         }
-        if ($this->Images->save($image)) {
-            $this->set('message','succesful');
+        if ($this->Galleryimages->save($image)) {
+            $this->Flash->success(__('The image has been saved.'));
+
+            return $this->redirect(['controller' => 'Galleryimages', 'action' => 'add']);
         }
-        $this->set('message','unsuccesful');
+        $this->Flash->error(__('The image could not be saved. Please, try again.'));
         }
         $this->set(compact('image', 'projects'));
-        $this->set('_serialize', ['image','message']);
+        $this->set('_serialize', ['image']);
     }
 
     /**
@@ -65,20 +65,21 @@ class ImagesController extends AppController
      */
     public function edit($id = null)
     {
-        $image = $this->Images->get($id, [
+        $image = $this->Galleryimages->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $image = $this->Images->patchEntity($image, $this->request->getData());
+            $image = $this->Galleryimages->patchEntity($image, $this->request->getData());
 
-            if ($this->Images->save($image)) {
-                $this->set('message','succesful');
+            if ($this->Galleryimages->save($image)) {
+                $this->Flash->success(__('The image has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
             }
-            $this->set('message','unsuccesful');
+            $this->Flash->error(__('The image could not be saved. Please, try again.'));
         }
-        $projects = $this->Images->Projects->find('list', ['limit' => 200]);
         $this->set(compact('image', 'projects'));
-        $this->set('_serialize', ['image','message']);
+        $this->set('_serialize', ['image']);
     }
 
     /**
@@ -91,13 +92,13 @@ class ImagesController extends AppController
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $image = $this->Images->get($id);
+        $image = $this->Galleryimages->get($id);
         $path = $image->photo_dir;
-        if ($this->Images->delete($image)) {
-            unlink( WWW_ROOT.$path);
-            $this->set('message','succesful');
+        if ($this->Galleryimages->delete($image)) {
+            unlink($this->base.$path);
+            $this->Flash->success(__('The image has been deleted.'));
         } else {
-            $this->set('message','unsuccesful');
+            $this->Flash->error(__('The image could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'manage']);

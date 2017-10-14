@@ -53,7 +53,7 @@
                   <a href="#" class="image left"><img src="/images/pic01.jpg" alt="" /></a>
                   <div class="inner">
                     <h3>MR. NITIN RAWAT</h3>
-                    <p>Mr. Nitin Rawat is Chairman and Managing Director of BuildiTech Enterprises. A qualified Engineer and a successful Industrialist with proven success in Construction, he has achieved excellent results in various business ventures.</p>
+                    <p>A qualified Engineer and a successful Industrialist with proven success in Construction.</p>
                   </div>
                 </div>
               </section>
@@ -62,7 +62,7 @@
                   <a href="#" class="image left"><img src="/images/pic02.jpg" alt="" /></a>
                   <div class="inner">
                     <h3>MR. SUMIT KUMAR SINGH</h3>
-                    <p>Mr. Sumit Kumar Singh is an entrepreneur who has very good hold in the field of marketing and sales. He has also put lots of his great efforts to make company an established firm in short span of time and customer satisfaction.</p>
+                    <p>Mr. Sumit Kumar Singh is an entrepreneur who has very good hold in the field of marketing and sales.</p>
                   </div>
                 </div>
               </section>

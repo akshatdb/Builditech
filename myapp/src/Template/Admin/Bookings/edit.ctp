@@ -64,7 +64,7 @@
             $.ajax({
                     type: "POST",
                     header: {'X-CSRF-TOKEN' : this.csrfToken},
-                    url: '/admin/projects/getGrid',
+                    url: '/projects/getGrid',
                     data: {
                         "id" : $('#project-id').val(),
                         "_csrfToken": '<?= $this->request->params['_csrfToken'] ?>'

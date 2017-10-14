@@ -72,9 +72,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                                           <?php endif; ?>
                                         <li><?= $this->Html->link('Privacy Policy', ['prefix' => false, 'controller' => 'Pages', 'action' => 'display','privacy']); ?></li>
                                         <?php if($loggedIn) : ?>
-                                        <li><?= $this->Html->link('Logout', ['controller' => 'users', 'action' => 'logout']); ?></li>
+                                        <li><?= $this->Html->link('Logout', ['prefix'=>false,'controller' => 'users', 'action' => 'logout']); ?></li>
                                         <?php else : ?>
-                                          <li><?= $this->Html->link('Login', ['controller' => 'users', 'action' => 'login']); ?></li>
+                                          <li><?= $this->Html->link('Login', ['prefix'=>false,'controller' => 'users', 'action' => 'login']); ?></li>
                                         <?php endif; ?>
                                     </ul>
                                 </li>

@@ -15,11 +15,6 @@ use Cake\ORM\TableRegistry;
 class UsersController extends AppController
 {
 
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|void
-     */
     public function index($role = null)
     {
         $this->set('role',$role);
@@ -28,14 +23,6 @@ class UsersController extends AppController
         $this->set('users', $this->paginate($query));
         $this->set('_serialize', ['users']);
     }
-
-    /**
-     * View method
-     *
-     * @param string|null $id User id.
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function view($id = null)
     {
         $this->viewBuilder()->setLayout('customer');
@@ -46,20 +33,6 @@ class UsersController extends AppController
         $this->set('user', $user);
         $this->set('_serialize', ['user']);
     }
-
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
-
-    /**
-     * Edit method
-     *
-     * @param string|null $id User id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
     public function edit($id = null)
     {
         $this->viewBuilder()->setLayout('authentication');
@@ -79,14 +52,6 @@ class UsersController extends AppController
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);
     }
-
-    /**
-     * Delete method
-     *
-     * @param string|null $id User id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
@@ -98,23 +63,6 @@ class UsersController extends AppController
         }
 
         return $this->redirect($this->request->referer());
-    }
-    public function login(){
-        $this->viewBuilder()->setLayout('authentication');
-        if($this->request->is('post')){
-            $user = $this->Auth->identify();
-            if($user){
-                $this->Auth->setUser($user);
-                $this->Flash->success("Logged in successfully");
-                return $this->redirect(['prefix'=>'admin','controller' => 'Pages','action' => 'display','admin']);
-            }
-            $this->Flash->error("Invalid Credentials");
-        }
-    }
-    public function logout(){
-        $this->Flash->success('You are logged out');
-        $this->Auth->logout();
-        return $this->redirect(['prefix' => false,'controller' => 'Pages','action' => 'display','home']);
     }
     public function register($role = null){
         $this->viewBuilder()->setLayout('authentication');

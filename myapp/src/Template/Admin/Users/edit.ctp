@@ -1,8 +1,8 @@
 <h1>Edit <?= ucwords($role) ?></h1> 
 <?= $this->Form->create(); ?>
-    <?= $this->Form->input('name',['placeholder' => 'Name']); ?>
-    <?= $this->Form->input('emailid',['placeholder' => 'Email ID']); ?><img height='15px' width='15px' style="margin:0px 15px;" src='/images/loading.gif' id="checking-gif"/>   
-    <?= $this->Form->input('phoneno',['placeholder' => 'Mobile No']); ?>
+    <?= $this->Form->input('name',['placeholder' => 'Name','value' => $user->name]); ?>
+    <?= $this->Form->input('emailid',['placeholder' => 'Email ID','value' => $user->emailid]); ?><img height='15px' width='15px' style="margin:0px 15px;" src='/images/loading.gif' id="checking-gif"/>   
+    <?= $this->Form->input('phoneno',['placeholder' => 'Mobile No','value' => $user->phoneno]); ?>
     <?= $this->Form->input('password',['type' => 'password','placeholder' => 'Password']); ?>
     <?= $this->Form->input('role',['placeholder' => 'Role','readonly'=>true,'value'=>$role,'type'=>'hidden']); ?>
     <?= $this->Form->submit('Register ', ['class' => 'login-btn alt']); ?>

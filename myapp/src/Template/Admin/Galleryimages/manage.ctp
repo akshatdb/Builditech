@@ -3,8 +3,8 @@
                     <?php if(!($images->count()==0)): ?>
                     <div class="fotorama" data-width="100%" data-loop="true" data-autoplay="true" data-arrows="true" data-transition="crossfade" data-fit="cover" data-nav="thumbs">
                      <?php foreach ($images as $image): ?>
-                        <img src="<?= $image->photo_dir?>" data-caption="<?= 'Belongs to : '.$image->project->project_name ?>" id="<?= $image->id ?>">
-                        <?php endforeach; ?>
+                        <img src="<?= $image->photo_dir?>" id="<?= $image->id ?>">
+                     <?php endforeach; ?>
                     </div>
                     <i class="fa fa-trash fa-3x delete-btn"></i>
                     <div>
@@ -15,7 +15,7 @@
                         $('.delete-btn').click(function(){
                         var $fotoramaDiv = $('.fotorama').fotorama();
                         var fotorama = $fotoramaDiv.data('fotorama');
-                        $('#del-form').attr('action','/admin/images/delete/'+fotorama.activeFrame['id'])
+                        $('#del-form').attr('action','/admin/galleryimages/delete/'+fotorama.activeFrame['id'])
                         $('#del-form').submit();});
                     </script>
                 <?php else: ?>

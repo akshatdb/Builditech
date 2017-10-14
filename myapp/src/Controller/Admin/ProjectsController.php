@@ -26,29 +26,6 @@ class ProjectsController extends AppController
         $this->set(compact('projects'));
         $this->set('_serialize', ['projects']);
     }
-
-    /**
-     * View method
-     *
-     * @param string|null $id Project id.
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $project = $this->Projects->get($id, [
-            'contain' => ['Projects', 'Customers']
-        ]);
-
-        $this->set('project', $project);
-        $this->set('_serialize', ['project']);
-    }
-
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
     public function add()
     {
         $this->viewBuilder()->setLayout('customer');
@@ -64,14 +41,6 @@ class ProjectsController extends AppController
         $this->set(compact('project'));
         $this->set('_serialize', ['project']);
     }
-
-    /**
-     * Edit method
-     *
-     * @param string|null $id Project id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
     public function edit($id = null)
     {
         $this->viewBuilder()->setLayout('customer');
@@ -90,14 +59,6 @@ class ProjectsController extends AppController
         $this->set(compact('project'));
         $this->set('_serialize', ['project']);
     }
-
-    /**
-     * Delete method
-     *
-     * @param string|null $id Project id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
@@ -109,15 +70,5 @@ class ProjectsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
-    }
-    public function getGrid(){
-        $plotsTable = TableRegistry::get('Plots');
-        $id = $this->request->getData('id');
-                $project = $this->Projects->get($id, [
-            'contain' => ['Plots']
-        ]);
-        $this->set('bookedplots', array_values($project['plots']));
-        $this->set('plots', $project->noplots);
-        $this->set('amount',$project->amount);
     }
 }

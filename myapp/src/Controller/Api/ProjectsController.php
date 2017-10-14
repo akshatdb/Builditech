@@ -1,7 +1,7 @@
 <?php
-namespace App\Controller;
+namespace App\Controller\Api;
 
-use App\Controller\AppController;
+use App\Controller\Api\AppController;
 use Cake\Event\Event;
 use Cake\ORM\TableRegistry;
 /**
@@ -24,6 +24,7 @@ class ProjectsController extends AppController
         $this->set('_serialize', ['project']);
     }
     public function getGrid(){
+        $plotsTable = TableRegistry::get('Plots');
         $id = $this->request->getData('id');
                 $project = $this->Projects->get($id, [
             'contain' => ['Plots']

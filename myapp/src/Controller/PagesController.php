@@ -20,6 +20,7 @@ use Cake\Network\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
 use Cake\Event\Event;
 use Cake\Controller\Component\AuthComponent;
+use Cake\ORM\TableRegistry;
 
 
 /**
@@ -43,6 +44,12 @@ class PagesController extends AppController
      */
     public function display(...$path)
     {
+        if($path[0] == 'gallery')
+        {
+            $images = TableRegistry::get('Galleryimages')->find('all')->toArray();
+            $this->set(compact('images'));
+            $this->set('_serialize', ['images']);
+        }
         $count = count($path);
         if (!$count) {
             return $this->redirect('/');
@@ -70,6 +77,6 @@ class PagesController extends AppController
         }
     }
     public function beforefilter(Event $event){
-        $this->Auth->allow(['display']);
+        $this->Auth->allow(['display','displayApi']);
     }
 }

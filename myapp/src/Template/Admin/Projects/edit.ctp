@@ -45,7 +45,7 @@
 
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Next: Upload Images'),['class' => 'login-btn alt']) ?>
+    <?= $this->Form->button(__('Save'),['class' => 'login-btn alt']) ?>
     <?= $this->Form->end() ?>
 </div>
 

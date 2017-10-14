@@ -28,7 +28,7 @@ class ContactController extends AppController
         if ($this->request->is('post')) {
             $contact = $this->Contact->patchEntity($contact, $this->request->getData(),['validate' => 'default']);
             if ($this->Contact->save($contact)) {
-                $email = new Email('default');
+                try{$email = new Email('default');
                 $email->viewVars(['name' => $contact->name, 'number' => $contact->contact, 'email' => $contact->email, 'message' => $contact->body]);
                 $email->from(['bulditest@gmail.com' => 'BuildiTech'])
                         ->template('default')
@@ -38,6 +38,9 @@ class ContactController extends AppController
                         ->send();
                     $this->Flash->success(__('Sent!'));
                     return $this->redirect($this->referer());
+                }catch(\Exception $e){
+                    $this->Flash->error('failed: '.$e->message);
+                }
             }
             $this->Flash->error(__('Something went wrong!'));
             return $this->redirect($this->referer());
@@ -47,13 +50,6 @@ class ContactController extends AppController
     }
     public function beforefilter(Event $event){
         $this->Auth->allow(['add']);
-    }
-    public function listContacts()
-    {
-        $this->viewBuilder()->setLayout('listAjax');
-        $contacts = $this->paginate(TableRegistry::get('contact')->find('all'),['scope' => 'contact'] ) ;
-        $this->set(compact('contacts'));
-        $this->set('_serialize', ['contacts']);
     }
     public function delete($id = null)
     {

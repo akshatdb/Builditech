@@ -15,13 +15,8 @@ use Cake\ORM\TableRegistry;
  */
 class ContactController extends AppController
 {
-    public $paginate = ['limit' => 5];
-
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
+    public $paginate = ['limit' => 5,
+            'order' => ['created' => 'desc']];
     public function sendMail()
     {
         $email = new Email('default');
@@ -40,10 +35,11 @@ class ContactController extends AppController
         {        $this->set("message","Failed");
                     $this->set("code",0);}
     }
+
     public function listContacts()
     {
-        $this->viewBuilder()->setLayout('ajax');
-        $contacts = $this->paginate(TableRegistry::get('contact')->find('all'),['scope' => 'contact'] ) ;
+        $this->viewBuilder()->setLayout('listAjax');
+        $contacts = $this->paginate(TableRegistry::get('contact')->find('all'),['scope' => 'contact']) ;
         $this->set(compact('contacts'));
         $this->set('_serialize', ['contacts']);
     }
