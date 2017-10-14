@@ -47,9 +47,11 @@
 
                                             <span class="image featured">
                                             <?php if (!sizeof($images) == 0): ?>
+                                            <div class="fotorama" data-width="100%" data-loop="true" data-autoplay="true" data-arrows="true" data-transition="crossfade">
                                             <?php foreach ($images as $image): ?>
                                                 <img src="<?= $image->photo_dir?>" id="<?= $image->id ?>">
                                             <?php endforeach; ?>
+                                            </div>
                                             <?php else: ?>
                                             ERROR:NO IMAGES FOUND
                                             <?php endif ?>                                                
