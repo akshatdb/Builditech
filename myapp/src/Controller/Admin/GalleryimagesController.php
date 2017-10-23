@@ -32,7 +32,7 @@ class GalleryimagesController extends AppController
                 if (in_array($ext, $arr_ext)) {
                 //do the actual uploading of the file. First arg is the tmp name, second arg is 
                 //where we are putting it
-                move_uploaded_file($file['tmp_name'], WWW_ROOT . 'upload/gallery/' . $setNewFileName . '.jpg');
+                move_uploaded_file($file['tmp_name'], $this->base. 'upload/gallery/' . $setNewFileName . '.jpg');
 
                 //prepare the filename for database entry 
                 $imageFileName = $setNewFileName . '.jpg';
@@ -43,7 +43,7 @@ class GalleryimagesController extends AppController
         $image = $this->Galleryimages->patchEntity($image, $this->request->getData());
         if (!empty($this->request->data['photo']['name'])) {
             $image->photo = $imageFileName;
-            $image->photo_dir = '/upload/gallery/'.$imageFileName;
+            $image->photo_dir = 'upload/gallery/'.$imageFileName;
         }
         if ($this->Galleryimages->save($image)) {
             $this->Flash->success(__('The image has been saved.'));
@@ -95,7 +95,7 @@ class GalleryimagesController extends AppController
         $image = $this->Galleryimages->get($id);
         $path = $image->photo_dir;
         if ($this->Galleryimages->delete($image)) {
-            unlink( WWW_ROOT.$path);
+            unlink($this->base.$path);
             $this->Flash->success(__('The image has been deleted.'));
         } else {
             $this->Flash->error(__('The image could not be deleted. Please, try again.'));
