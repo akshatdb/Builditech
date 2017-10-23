@@ -13,13 +13,23 @@ use Cake\ORM\TableRegistry;
  */
 class ProjectsController extends AppController
 {
-
+    public function initialize()
+    {
+        parent::initialize();
+        $this->Auth->allow(['view', 'index', 'getGrid']);
+        $user = $this->Auth->user();
+    }
+    public function index()
+    {
+        $projects = $this->paginate($this->Projects);
+        $this->set(compact('projects'));
+        $this->set('_serialize', ['projects']);
+    }
     public function view($id = null)
     {
         $project = $this->Projects->get($id, [
             'contain' => ['Plots','Images']
         ]);
-
         $this->set('project', $project);
         $this->set('_serialize', ['project']);
     }
@@ -32,9 +42,5 @@ class ProjectsController extends AppController
         $this->set('bookedplots', array_values($project['plots']));
         $this->set('plots', $project->noplots);
         $this->set('amount',$project->amount);
-    }
-    public function beforeFilter(Event $event)
-    {
-        $this->Auth->allow(['view','getGrid']);
     }
 }

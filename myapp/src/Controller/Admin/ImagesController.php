@@ -34,7 +34,7 @@ class ImagesController extends AppController
                 if (in_array($ext, $arr_ext)) {
                 //do the actual uploading of the file. First arg is the tmp name, second arg is 
                 //where we are putting it
-                move_uploaded_file($file['tmp_name'], $this->base. 'upload/projects/' . $setNewFileName . '.jpg');
+                move_uploaded_file($file['tmp_name'], WWW_ROOT . 'upload/projects/' . $setNewFileName . '.jpg');
 
                 //prepare the filename for database entry 
                 $imageFileName = $setNewFileName . '.jpg';
@@ -46,7 +46,7 @@ class ImagesController extends AppController
         $image = $this->Images->patchEntity($image, $this->request->getData());
         if (!empty($this->request->data['photo']['name'])) {
             $image->photo = $imageFileName;
-            $image->photo_dir = 'upload/projects/'.$imageFileName;
+            $image->photo_dir = '/upload/projects/'.$imageFileName;
         }
         if ($this->Images->save($image)) {
             $this->Flash->success(__('The image has been saved.'));
@@ -58,53 +58,18 @@ class ImagesController extends AppController
         $this->set(compact('image', 'projects'));
         $this->set('_serialize', ['image']);
     }
-
-    /**
-     * Edit method
-     *
-     * @param string|null $id Image id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
-    public function edit($id = null)
-    {
-        $image = $this->Images->get($id, [
-            'contain' => []
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $image = $this->Images->patchEntity($image, $this->request->getData());
-
-            if ($this->Images->save($image)) {
-                $this->Flash->success(__('The image has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The image could not be saved. Please, try again.'));
-        }
-        $projects = $this->Images->Projects->find('list', ['limit' => 200]);
-        $this->set(compact('image', 'projects'));
-        $this->set('_serialize', ['image']);
-    }
-
-    /**
-     * Delete method
-     *
-     * @param string|null $id Image id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
         $image = $this->Images->get($id);
         $path = $image->photo_dir;
         if ($this->Images->delete($image)) {
-            unlink($this->base.$path);
-            $this->Flash->success(__('The image has been deleted.'.$this->base));
-        } 
-        else {
+            unlink( WWW_ROOT.$path);
+            $this->Flash->success(__('The image has been deleted.'));
+        } else {
             $this->Flash->error(__('The image could not be deleted. Please, try again.'));
         }
+
         return $this->redirect(['action' => 'manage']);
     }
 }
