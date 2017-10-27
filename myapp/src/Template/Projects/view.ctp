@@ -17,12 +17,12 @@
       <div class="row">
         <section class="6u 12u(narrower">
         <h3>Videos</h3>
+        <?= count($project->videos) ?>
         <?php if(count($project->videos) != 0): ?>
           <div class="fotorama" data-width="85%" data-loop="true" data-autoplay="true" data-arrows="true" data-transition="crossfade">
           <?php foreach($project->videos as $video): ?>
             <a href = "<?= $video->video_link ?>">$video->video_name</a>
           <?php endforeach; ?>
-        
         <?php else: ?>
         <div style="width:100%;margin:100px 0px;"><center><i class="fa fa-5x fa-exclamation"></i><br><b>No Video!</b><center></div>
         <?php endif ?>
