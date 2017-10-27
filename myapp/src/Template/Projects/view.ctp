@@ -17,7 +17,6 @@
       <div class="row">
         <section class="6u 12u(narrower">
         <h3>Videos</h3>
-        <?= count($project->videos) ?>
         <?php if(count($project->videos) != 0): ?>
           <div class="fotorama" data-width="85%" data-loop="true" data-autoplay="true" data-arrows="true" data-transition="crossfade">
           <?php foreach($project->videos as $video): ?>

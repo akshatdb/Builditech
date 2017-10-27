@@ -17,7 +17,7 @@ class ProjectsController extends AppController
     public function view($id = null)
     {
         $project = $this->Projects->get($id, [
-            'contain' => ['Plots','Images']
+            'contain' => ['Plots','Images','Videos']
         ]);
 
         $this->set('project', $project);
