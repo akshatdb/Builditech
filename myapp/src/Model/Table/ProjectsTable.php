@@ -40,11 +40,15 @@ class ProjectsTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
-       $this->hasMany('Plots', [
-            'foreignKey' => 'project_id',
-        ])->setDependent(true);
-       $this->hasMany('Images',[
-        'foreignKey' => 'project_id'])->setDependent(true);
+        
+        $this->hasMany('Plots', [
+            'foreignKey' => 'project_id'])->setDependent(true);
+        $this->hasMany('Images',[
+            'foreignKey' => 'project_id'])->setDependent(true);
+        $this->hasMany('Videos',[
+            'foreignKey' => 'project_id'])->setDependent(true);
+        $this->hasMany('Comments',[
+            'foreignKey' => 'project_id'])->setDependent(true);
     }
 
     /**

@@ -42,7 +42,6 @@
             echo $this->Form->control('maplng',['required' => 'true','placeholder' => 'Map Longitude']);
             echo $this->Form->control('noplots',['required' => 'true','placeholder' => 'Number of Plots']);
             echo $this->Form->control('amount',['required' => 'true','placeholder' => 'Amount Per Plot']);
-
         ?>
     </fieldset>
     <?= $this->Form->button(__('Next: Upload Images'),['class' => 'login-btn alt']) ?>

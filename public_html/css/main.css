@@ -3204,12 +3204,12 @@
 	#contact{
     moz-appearance:textfield;
 	}
-	input[type=number]::-webkit-inner-spin-button, 
+	input[type=number]::-webkit-inner-spin-button,
 	input[type=number]::-webkit-outer-spin-button,
 	input[type=date]::-webkit-inner-spin-button,
-	input[type=date]::-webkit-outer-spin-button { 
-    -webkit-appearance: none; 
-    margin: 0; 
+	input[type=date]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 	}
 	/*authenticate*/
 	.user_panel{
@@ -3245,7 +3245,7 @@
 		width:100%;
 		padding:10px;
 		color:white;
-		background-color:grey;	
+		background-color:grey;
 		margin-top: 20px
 	}
 	.user_panel>form>fieldset>.radio-group>label{
@@ -3269,7 +3269,7 @@
 	/*Map*/
 	#map {
    width: 50%;
-   height: 400px;
+   height: 300px;
    background-color: grey;
    padding:10px;
    margin:10px;
@@ -3497,7 +3497,7 @@
     padding: 0px 15px;
     border-radius: 1px;
     font-size:15px;
- 
+
     /* Position the tooltip text - see examples below! */
     position: absolute;
     z-index: 1;
@@ -3547,4 +3547,57 @@
 	.quick-task{
 	display:none;
 }
+}
+
+/*Comments section*/
+.comments_list{
+	margin-top:30px;
+	display:block;
+}
+.comment-box{
+border:1px solid #e0e0e0;
+margin-top:20px;
+border-radius:5px;
+background: white;
+}
+.comment-box>h3{
+	background:#37c0fb;
+	color:white;
+	border-radius:5px 5px 0 0;
+	padding:0px 10px;
+}
+.comment-box>p
+{
+	padding:10px;
+}
+.delete-comment{
+	margin-right:10px;
+}
+.delete-comment:hover{
+	color:red;
+}
+.delete-comment:active{
+	color:red;
+}
+.delete-comment:active{
+	color:red;
+}
+/*Projects Page*/
+.project-description{
+	font-size: 30px;
+}
+.project-header{
+	font-size:100px;
+	line-height: 0px;
+	position: absolute;
+    z-index: 1000;
+    color: white;
+    margin-top: 20%;
+    margin-left: 10%;
+    text-shadow: 5px 5px 5px black;
+}
+/*Timestamps*/
+.timestamp{
+	display:inline;
+	float:right;
 }

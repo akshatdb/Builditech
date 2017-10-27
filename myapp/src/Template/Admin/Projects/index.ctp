@@ -24,6 +24,7 @@
                     <?= $this->Html->link(__('<i class="fa fa-eye"></i>'), ['prefix' => false,'controller' => 'projects','action' => 'view', $project->id],['escape' => false]) ?>
                     <?= $this->Html->link(__('<i class="fa fa-pencil-square-o"></i>'), ['action' => 'edit', $project->id],['escape' => false]) ?>
                     <?= $this->Html->link(__('<i class="fa fa-picture-o"></i>'),['controller' => 'Images','action'=> 'add',$project->id],['escape' => false]) ?>
+                    <?= $this->Html->link(__('<i class="fa fa-picture-o"></i>'),['controller' => 'Videos','action'=> 'add',$project->id],['escape' => false]) ?>
                     <?= $this->Form->postLink(__('<i class="fa fa-trash"></i>'), ['action' => 'delete', $project->id], ['confirm' => __('Are you sure you want to delete # {0}?', $project->project_name),'escape' => false]) ?>
                 </td>
             </tr>
