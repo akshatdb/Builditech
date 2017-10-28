@@ -18,10 +18,11 @@
         <section class="6u 12u(narrower">
         <h3>Videos</h3>
         <?php if(count($project->videos) != 0): ?>
-          <div class="fotorama" data-width="85%" data-loop="true" data-autoplay="true" data-arrows="true" data-transition="crossfade">
+          <div class="fotorama" data-loop="true" data-autoplay="true" data-arrows="true" data-transition="crossfade">
           <?php foreach($project->videos as $video): ?>
             <a href = "<?= $video->video_link ?>">$video->video_name</a>
           <?php endforeach; ?>
+        
         <?php else: ?>
         <div style="width:100%;margin:100px 0px;"><center><i class="fa fa-5x fa-exclamation"></i><br><b>No Video!</b><center></div>
         <?php endif ?>
@@ -29,7 +30,7 @@
         <section class="6u 12u(narrower)">
           <h3>Gallery</h3>
         <?php if(count($project->images) != 0): ?>
-            <div class="fotorama" data-width="100%" data-loop="true" data-autoplay="true" data-arrows="true" data-transition="crossfade">
+            <div class="fotorama" data-width="100%" data-loop="true" data-arrows="true" data-transition="crossfade">
               <?php foreach($project->images as $image): ?>
                 <img src="/<?= $image->photo_dir ?>">
               <?php endforeach; ?>
@@ -73,11 +74,7 @@
                 $(document).ready(createGrid());
         </script>
       </div>
-    </section>
-    <br>
-    <section  style="background-color: rgba(255, 255, 255, 0.42);">
-      <div class="container">
-        <div class="row">
+      <div class="row" style="background-color: rgba(255, 255, 255, 0.42);">
           <section class="6u 12u(narrower)">
             <h3>Leave a Comment</h3>
               <?= $this->Form->create('Comment',['prefix'=>false,'url' => '/comments/add','method'=>'POST']); ?>
@@ -131,7 +128,6 @@
             </div>
           </section>
         </div>
-      </div>
     </section>
     <script>
     $(document).ready(getComments('/comments/index'));

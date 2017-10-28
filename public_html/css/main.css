@@ -3557,14 +3557,14 @@
 .comment-box{
 border:1px solid #e0e0e0;
 margin-top:20px;
-border-radius:5px;
+border-radius:2px;
 background: white;
 }
 .comment-box>h3{
 	background:#37c0fb;
 	color:white;
-	border-radius:5px 5px 0 0;
-	padding:0px 10px;
+	border-radius:2px 2px 0 0;
+	padding:5px 10px;
 }
 .comment-box>p
 {
