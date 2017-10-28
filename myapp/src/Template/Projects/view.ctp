@@ -32,7 +32,7 @@
         <?php if(count($project->images) != 0): ?>
             <div class="fotorama" data-width="100%" data-loop="true" data-arrows="true" data-transition="crossfade">
               <?php foreach($project->images as $image): ?>
-                <img src="<?= $image->photo_dir ?>">
+                <img src="/<?= $image->photo_dir ?>">
               <?php endforeach; ?>
             </div>
         <?php else: ?>
