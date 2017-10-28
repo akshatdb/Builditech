@@ -3609,6 +3609,9 @@ background: white;
 		height:200px;
 	}
 }
+.project-description>p{
+	line-height: 1;
+}
 /*Timestamps*/
 .timestamp{
 	display:inline;
