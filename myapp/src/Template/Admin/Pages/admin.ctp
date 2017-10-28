@@ -60,8 +60,8 @@
 											<ul class="links">
 												<li><a href="../admin/projects/add" class= "button alt link-btn">Add a new Project</a></li>
 												<li><a href="../admin/projects/index" class= "button alt link-btn">See and Edit Projects</a></li>
-												<li><a href="../admin/images/manage" class= "button alt link-btn">Delete Projects Images</a></li>
-                                                <li><a href="../admin/videos/manage" class= "button alt link-btn">Delete Projects Videos</a></li>
+												<li><a href="../admin/images/manage" class= "button alt link-btn">Delete Project Images</a></li>
+                                                <li><a href="../admin/videos/manage" class= "button alt link-btn">Delete Project Videos</a></li>
 											</ul>
 										</section>
 
