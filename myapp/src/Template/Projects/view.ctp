@@ -1,8 +1,8 @@
 <h2 class="project-header"><?= $project->project_name ?></h2>
 <?php if(count($project->images) == 0): ?>
-  <div style="height:500px;background-color: grey"></div>
+  <div class="project-cover" style="background-color: grey"></div>
 <?php else: ?>
-  <div style="height:500px;background-attachment:fixed;background-image: url(<?= $this->Url->build($project->images[0]->photo_dir,true)?>)"></div>
+  <div class="project-cover" style="background-image: url(<?= $this->Url->build($project->images[0]->photo_dir,true)?>)"></div>
 <?php endif; ?>
 <section class="wrapper style1" style="padding:10px;">
   <div class="container">
@@ -15,7 +15,7 @@
           </article>
         </section>
       <div class="row">
-        <section class="6u 12u(narrower">
+        <section class="6u 12u(narrower)">
         <h3>Videos</h3>
         <?php if(count($project->videos) != 0): ?>
           <div class="fotorama" data-loop="true" data-autoplay="true" data-arrows="true" data-transition="crossfade">

@@ -3596,6 +3596,19 @@ background: white;
     margin-left: 10%;
     text-shadow: 5px 5px 5px black;
 }
+.project-cover{
+	height:500px;
+	background-attachment: fixed;
+	background-size: cover;
+}
+@media (max-width:768px){
+	.project-header{
+		font-size:50px;
+	}
+	.project-cover{
+		height:200px;
+	}
+}
 /*Timestamps*/
 .timestamp{
 	display:inline;
