@@ -2,7 +2,7 @@
 <?php if(count($project->images) == 0): ?>
   <div class="project-cover" style="background-color: grey"></div>
 <?php else: ?>
-  <div class="project-cover" style="background-image: url(<?= $this->Url->build($project->images[0]->photo_dir,true)?>)"></div>
+  <div class="project-cover" style="background-image: url(<?= $this->Url->build(end($project->images)->photo_dir,true)?>)"></div>
 <?php endif; ?>
 <section class="wrapper style1" style="padding:10px;">
   <div class="container">
@@ -32,7 +32,7 @@
         <?php if(count($project->images) != 0): ?>
             <div class="fotorama" data-width="100%" data-loop="true" data-arrows="true" data-transition="crossfade">
               <?php foreach($project->images as $image): ?>
-                <img src="/<?= $image->photo_dir ?>">
+                <img src="<?= $image->photo_dir ?>">
               <?php endforeach; ?>
             </div>
         <?php else: ?>
